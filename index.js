@@ -1,52 +1,27 @@
-'use strict';
+import { Dimensions, PixelRatio } from "react-native";
 
-import { NativeModules } from 'react-native';
+let { width } = Dimensions.get("window");
 var screenWidth,designWith,calculatedPercent ;
 
-var isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-
-const FResizer = {
-    getScreen (){
-        screenWidth = parseFloat(window.innerWidth);
-    },
-    setDesignWidth (designWidth){
-        designWith = parseFloat(designWidth);
-    },
-    calcPercent (){
-        var percent = parseFloat(((screenWidth * 100) / designWith));
-        
-        calculatedPercent = parseFloat(percent);
-    },
-    elementResizer (sizeInPixel,designWidth){
-        if(isMobile.any())
-        {
-            return sizeInPixel;
-        }else{
-            FResizer.setDesignWidth(designWidth);
-            FResizer.getScreen();
-            FResizer.calcPercent();
-            return parseFloat(sizeInPixel) * parseFloat(calculatedPercent / 100);
-        }
-    }
+var getScreen = function(){
+    screenWidth = parseFloat(width);
 }
 
-module.exports = { FResizer }
+var setDesignWidth = function(designWidth){
+    designWith = parseFloat(designWidth);
+}
+
+var calcPercent = function(){
+    var percent = parseFloat(((screenWidth * 100) / designWith));
+    
+    calculatedPercent = parseFloat(percent);
+}
+
+var elementResizer = function(sizeInPixel,designWidth){
+        setDesignWidth(designWidth);
+        getScreen();
+        calcPercent();
+        return parseFloat(sizeInPixel) * parseFloat(calculatedPercent / 100);
+}
+
+export default { elementResizer }
