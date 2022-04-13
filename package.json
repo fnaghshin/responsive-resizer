@@ -1,0 +1,25 @@
+{
+  "name": "fnaghshin-responsive-size",
+  "version": "1.0.0",
+  "description": "Resize All Fonts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fnaghshin/responsive-resizer.git"
+  },
+  "keywords": [
+    "text",
+    "resizer",
+    "responsive",
+    "resize"
+  ],
+  "author": "Farzad Naghshin <naghshin.farzad@gmail.com> (fnaghshin.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fnaghshin/responsive-resizer/issues"
+  },
+  "homepage": "https://github.com/fnaghshin/responsive-resizer#readme"
+}
